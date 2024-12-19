@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Home Page</title>
+</head>
+<body>
+<h1>Admin Home Page</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Candidate</th>
+        <th>Vote Count</th>
+        <th>Voters</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="candidate : ${candidates}">
+        <td th:text="${candidate.name}"></td>
+        <td th:text="${candidate.voteCount}"></td>
+        <td>
+            <ul>
+                <li th:each="user : ${users}"
+                    th:if="${user.hasVoted} == ${candidate.name}"
+                    th:text="${user.username}">
+
+                </li>
+            </ul>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/logout}">Logout</a>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Voting Page</title>
+</head>
+<body>
+<h1>Voting Page</h1>
+<div th:if="${message}">
+    <p th:text="${message}"></p>
+</div>
+<form th:action="@{/vote}" method="post">
+    <div>
+        <label for="candidate">Select Candidate:</label>
+        <select id="candidate" name="candidateId">
+            <option th:each="candidate : ${candidates}" th:value="${candidate.id}" th:text="${candidate.name}"></option>
+        </select>
+    </div>
+    <div>
+        <button type="submit">Vote</button>
+    </div>
+</form>
+<a th:href="@{/logout}">Logout</a>
+</body>
+</html>
